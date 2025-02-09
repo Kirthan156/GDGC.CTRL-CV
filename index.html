@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmAssist</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    
+    <header>
+        <div class="navbar">
+            <h1 class="logo">🌿 FarmAssist</h1>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#" onclick="showSection('cropRecommendation')">🌾 Crop Disease Detection</a></li>
+                    <li><a href="#" onclick="showSection('marketPrices')">💰 Market Prices</a></li>
+                    <li><a href="#" onclick="showSection('farmingPlan')">🗺️ Farming Plan</a></li>
+                    <li><a href="#" onclick="showSection('farmingTips')">📋 Farming Tips</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="ask-questions" onclick="showSection('aiChatbot')">🤖 Ask Questions</a>
+        </div>
+    </header>
+
+    
+    <section id="intro">
+        <p>
+            Welcome to <strong>FarmAssist</strong>, your AI-powered agricultural companion! 
+            Our platform helps farmers analyze crop diseases, access real-time market prices, 
+            receive personalized farming plans, and gain expert farming tips.  
+            With cutting-edge AI, we provide accurate and reliable agricultural insights 
+            to improve productivity and sustainability.  
+            Explore our features and make smarter farming decisions today!
+        </p>
+    </section>
+
+    
+    <div class="content">
+        <div id="cropRecommendation" class="section">
+            <h2>🌱 Crop Disease Detection</h2>
+            <input type="file" id="cropImage" accept="image/*">
+            <button onclick="analyzeCrop()">Analyze</button>
+            <button onclick="speakText('cropResult')">🔊 Listen</button>
+            <button onclick="stopSpeech()">🛑 Stop</button>
+            <div class="output" id="cropResult"></div>
+        </div>
+
+        <div id="marketPrices" class="section">
+            <h2>💰 Market Prices</h2>
+            <label for="crop">Crop Type:</label>
+            <input type="text" id="crop" placeholder="Enter crop name">
+            <label for="region">Select Region:</label>
+            <select id="region">
+                <option value="">-- Select Region --</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="Canada">Canada</option>
+                <option value="UK">UK</option>
+            </select>
+            <button onclick="getMarketPrices()">Get Prices</button>
+            <button onclick="speakText('pricesResult')">🔊 Listen</button>
+            <button onclick="stopSpeech()">🛑 Stop</button>
+            <div class="output" id="pricesResult"></div>
+        </div>
+
+        <div id="farmingPlan" class="section">
+            <h2>🗺️ Farming Plan</h2>
+            <input type="text" id="city" placeholder="Enter your city">
+            <input type="text" id="budget" placeholder="Enter your budget">
+            <button onclick="getFarmingPlan()">Generate Plan</button>
+            <button onclick="speakText('planResult')">🔊 Listen</button>
+            <button onclick="stopSpeech()">🛑 Stop</button>
+            <div class="output" id="planResult"></div>
+        </div>
+
+        <div id="farmingTips" class="section">
+            <h2>📋 Farming Tips</h2>
+            <input type="text" id="cropTip" placeholder="Enter crop name">
+            <button onclick="getFarmingTips()">Get Tips</button>
+            <button onclick="speakText('tipsResult')">🔊 Listen</button>
+            <button onclick="stopSpeech()">🛑 Stop</button>
+            <div class="output" id="tipsResult"></div>
+        </div>
+
+        <div id="aiChatbot" class="section">
+            <h2>🤖 AI Chatbot</h2>
+            <textarea id="userQuestion" placeholder="Ask a farming question..."></textarea>
+            <button onclick="askChatbot()">Ask</button>
+            <button onclick="speakText('chatbotResponse')">🔊 Listen</button>
+            <button onclick="stopSpeech()">🛑 Stop</button>
+            <div class="output" id="chatbotResponse"></div>
+        </div>
+    </div>
+</body>
+</html>
